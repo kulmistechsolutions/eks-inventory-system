@@ -9,32 +9,11 @@ import {
   Package, 
   Wrench,
   BarChart3,
-  PieChart,
-  LineChart,
-  Calendar,
-  Filter,
-  Search,
-  Star,
-  Zap,
-  Target,
-  Award,
-  Activity,
   Users,
-  Settings,
-  ArrowRight,
-  Play,
-  Pause,
-  RotateCcw,
-  CreditCard,
-  Receipt,
-  Clock,
-  CheckCircle,
-  AlertCircle
+  ArrowRight
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { 
-  BarChart, 
-  Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -43,8 +22,6 @@ import {
   PieChart as RechartsPieChart, 
   Pie, 
   Cell,
-  LineChart as RechartsLineChart,
-  Line,
   Area,
   AreaChart,
   Legend
@@ -54,10 +31,10 @@ const Reports = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [reportType, setReportType] = useState('profit-loss');
-  const [period, setPeriod] = useState('month');
+  const [period] = useState('month');
 
   // Fetch profit/loss report
-  const { data: profitLossData } = useQuery(
+  useQuery(
     ['profitLoss', startDate, endDate],
     () => api.get('/reports/profit-loss', {
       params: { startDate, endDate }
@@ -66,14 +43,14 @@ const Reports = () => {
   );
 
   // Fetch sales report
-  const { data: salesData } = useQuery(
+  useQuery(
     ['salesReport', period],
     () => api.get(`/reports/sales?period=${period}`).then(res => res.data.data),
     { enabled: true }
   );
 
   // Fetch repair report
-  const { data: repairData } = useQuery(
+  useQuery(
     ['repairReport', period],
     () => api.get(`/reports/repairs?period=${period}`).then(res => res.data.data),
     { enabled: true }
@@ -171,7 +148,6 @@ const Reports = () => {
     { name: 'Waiting', value: 10, color: '#F59E0B' },
   ];
 
-  const COLORS = ['#10B981', '#3B82F6', '#F59E0B'];
 
   return (
     <div className="space-y-8">
