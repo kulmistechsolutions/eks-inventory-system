@@ -15,7 +15,7 @@ git add .
 
 # Commit changes
 echo "💾 Committing changes..."
-git commit -m "Deploy EKS Inventory System to Vercel"
+git commit -m "Deploy EKS Inventory System - Updated structure"
 
 # Check if remote origin exists
 if ! git remote get-url origin > /dev/null 2>&1; then
